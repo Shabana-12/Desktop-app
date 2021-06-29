@@ -18,7 +18,7 @@ class Login(QDialog):
         try:
             email = self.email.text()
             password = self.password.text()
-            db = mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+            db = mdb.connect('localhost', 'root', '', 'pyqt5')
             cur = db.cursor()
             cur.execute('SELECT * FROM userdata WHERE email= %s AND password = %s', (email, password,))
             result = cur.fetchone()
@@ -53,7 +53,7 @@ class CreateAcc(QDialog):
             email = self.email.text()
             name = self.name.text()
             password=self.password.text()
-            db = mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+            db = mdb.connect('localhost', 'root', '', 'pyqt5')
             cur = db.cursor()
             cur.execute('SELECT * FROM userdata WHERE email= %s', (email, ))
             result = cur.fetchone()
@@ -61,7 +61,7 @@ class CreateAcc(QDialog):
                 QMessageBox.about(self, 'register', 'Account already exist!')
             elif self.password.text() == self.confirmpass.text():
         
-                db = mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+                db = mdb.connect('localhost', 'root', '', 'pyqt5')
                 cur = db.cursor()
                 cur.execute("INSERT INTO userdata(name,  email, password) VALUES(%s, %s, %s)",
                            (name, email, password,))
