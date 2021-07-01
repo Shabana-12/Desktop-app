@@ -21,7 +21,7 @@ class Login(QDialog):
         try:
             name = self.name.text()
             password = self.password.text()
-            db = mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+            db = mdb.connect('localhost', 'root', "", 'pyqt5')
             cur = db.cursor()
             cur.execute(
                 'SELECT * FROM userdata WHERE name= %s AND password = %s', (name, password,))
@@ -63,7 +63,7 @@ class CreateAcc(QDialog):
             gender = self.gender.currentText()
            
      
-            db=mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+            db=mdb.connect('localhost', 'root', '', 'pyqt5')
             cur=db.cursor()
             cur.execute('SELECT * FROM userdata WHERE email= %s or name=%s', (email,name, ))
             result=cur.fetchone()
@@ -74,7 +74,7 @@ class CreateAcc(QDialog):
                                   'Please fill out the form properly !')
             elif self.password.text() == self.confirmpass.text():
 
-                db=mdb.connect('localhost', 'root', 'pass@1New', 'pyqt5')
+                db=mdb.connect('localhost', 'root', '', 'pyqt5')
                 cur=db.cursor()
                 cur.execute("INSERT INTO userdata(name,  email, password,phone,dob,gender) VALUES(%s, %s, %s,%s,%s,%s)",
                            (name, email, password, phone, dob,gender))
